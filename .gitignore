@@ -1,41 +1,252 @@
-# Compiled Lua sources
-luac.out
+function TP2(P1)
+    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if Distance < 150 then
+        Speed = 20000
+    elseif Distance < 200 then
+        Speed = 5000
+    elseif Distance < 300 then
+        Speed = 1030
+    elseif Distance < 500 then
+        Speed = 725
+    elseif Distance < 1000 then
+        Speed = 365
+    elseif Distance >= 1000 then
+        Speed = 365
+    end
+    game:GetService("TweenService"):Create(
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = P1}
+    ):Play()
+    if _G.Stop_Tween==true then
+        game:GetService("TweenService"):Create(
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+            {CFrame = P1}
+        ):Cancel()
+    end
+    _G.Clip = true
+    wait(Distance/Speed)
+    _G.Clip = false
+end
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+function TP_World1()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+end
+function TP_World2()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")	
+end
+function TP_World3()
+    _G.TP_Ser = true
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+end
+local placeId = game.PlaceId
+if placeId == 2753915549 then
+Old_World = true
+elseif placeId == 4442272183 then
+New_World = true
+elseif placeId == 7449423635 then
+Three_World = true
+end 
+     
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
 
-# Precompiled Headers
-*.gch
-*.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+local GUI = Mercury:Create{
+    Name = "UsedBy my DAD",
+    Size = UDim2.fromOffset(500, 300),
+    Theme = Mercury.Themes.Dark,
+    Link = "https://UsedByKaitunUser6/kak/RonYai"
+}
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+local Sai = GUI:Tab{
+    Name = "ตัวช่วยในการทำเผ่าไซ",
+    Icon = "rbxassetid://8569322835"
+}
 
+local Island_Tab = GUI:Tab{
+    Name = "Tp",
+    Icon = "rbxassetid://8569322835"
+}
+
+
+--step1---
+
+Sai:Button{
+    Name = "มาที่ใส่ ที่เสกหนวดดำ",
+    Description = nil,
+    Callback = function() 
+    TP2(CFrame.new(-5562.96289, 329.931427, -5965.24951, 0.532812893, -1.11362567e-07, 0.84623307, 7.36609422e-08, 1, 8.52189217e-08, -0.84623307, 1.69285848e-08, 0.532812893))
+end
+}
+
+Sai:Button{
+    Name = "ซื้อเผ่าไซ",
+    Description = nil,
+    Callback = function() 
+game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_"):InvokeServer("CyborgTrainer","Buy")
+end
+}
+
+Sai:Button{
+    Name = "กดปุ่มเขียว",
+    Description = nil,
+    Callback = function() 
+fireclickdetector(game:GetService("Workspace").Map.CircleIsland.RaidSummon.Button.Main.ClickDetector)
+end
+}
+Sai:Button{
+    Name = "เซิฟคนน้อย",
+    Description = nil,
+    Callback = function()
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+repeat
+    task.wait()
+until game:GetService("Players") and game:GetService("Workspace") and game:GetService("ReplicatedStorage")
+
+local LocalPlayer = game:GetService("Players").LocalPlayer
+loadstring(game:HttpGet("https://pastebin.com/raw/tUUGAeaH", true))()
+
+local function returnHRP()
+    if not LocalPlayer.Character then
+        return
+    end
+    if not LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        return
+    else
+        return LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    end
+end
+local function returnHUM()
+    if not LocalPlayer.Character then
+        return
+    end
+    if not LocalPlayer.Character:FindFirstChild("Humanoid") then
+        return
+    else
+        return LocalPlayer.Character:FindFirstChild("Humanoid")
+    end
+end
+repeat
+    task.wait()
+until returnHRP() and returnHUM()
+local HrpTable = {
+    Velocity = returnHRP().Velocity,
+    Transparency = returnHRP().Transparency,
+    Rotation = returnHRP().Rotation,
+    Size = returnHRP().Size,
+    Orientation = returnHRP().Orientation,
+    Anchored = returnHRP().Anchored
+}
+
+local function spoofHRP()
+    for i, v in pairs(HrpTable) do
+        spoof(returnHRP(), tostring(i), returnHRP():GetAttribute(v))
+    end
+
+    return true
+end
+
+local function TpTo(CFrame, Refresh)
+    if Refresh then
+        returnHUM().Health = 0
+        LocalPlayer.CharacterAdded:Wait()
+        repeat
+            task.wait()
+        until returnHRP() and returnHUM()
+        spoofHRP()
+        spoofHUM()
+    else
+        spoofHRP()
+    end
+
+    returnHRP().CFrame = CFrame
+
+    return true
+end
+
+--Be nice and leave the credits in!
+for i=1,100 do
+	print("Script made by noxu#2161\nMore scripts here: extorius.ezyro.com\nBe nice and leave the credits in!\n---------------------")
+end
+
+local Fruit_InServer = false
+local Fruits_InServer = {}
+local Fruit_InHand = nil
+
+for _,v in ipairs(workspace:GetChildren()) do
+	if v:IsA("Tool") then
+		Fruit_InServer = true
+		table.insert(Fruits_InServer, v)
+	end
+end
+
+if Fruit_InServer then
+	repeat
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(table.unpack({    [1] = "SetTeam",    [2] = "Pirates",}))
+		task.wait(.4)
+	until LocalPlayer.Team == game:GetService("Teams")["Pirates"]
+	
+	for _,v in pairs(Fruits_InServer) do
+		returnHRP().CFrame=v.Handle.CFrame
+		task.wait(.1)
+		Fruit_InHand = string.gsub(v.Name, " Fruit", "")
+		Fruit_InHand = Fruit_InHand.."-"..Fruit_InHand
+		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(table.unpack({    [1] = "StoreFruit",    [2] = Fruit_InHand,    [3] = returnHRP().Parent:FindFirstChildOfClass("Tool"),}))
+		task.wait(.1)
+	end
+	
+	task.wait(.5)
+	local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
+    module:Teleport(game.PlaceId)
+else
+	local module = loadstring(game:HttpGet"https://raw.githubusercontent.com/LeoKholYt/roblox/main/lk_serverhop.lua")()
+    module:Teleport(game.PlaceId)
+end
+end
+}
+
+Sai:Toggle{
+    Name = "Toggle",
+    StartingState = false,
+    Description = nil,
+    Callback = function(state) 
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack) do
+        if game:GetService("Players").LocalPlayer.Backpack.FirstofDarkness then
+    TP2(CFrame.new(-5562.96289, 329.931427, -5965.24951, 0.532812893, -1.11362567e-07, 0.84623307, 7.36609422e-08, 1, 8.52189217e-08, -0.84623307, 1.69285848e-08, 0.532812893))
+    if game.Players.LocalPlayer.Character.HumanoidRootPart.Position then
+
+end
+end
+end
+end}
+
+Island_Tab:Button{
+    Name = "โลก 1",
+    Description = nil,
+    Callback = function()
+    TP_World1()
+end
+}
+
+Island_Tab:Button{
+    Name = "โลก 2",
+    Description = nil,
+    Callback = function()
+    TP_World2()
+end
+}
+
+Island_Tab:Button{
+    Name = "โลก 3",
+    Description = nil,
+    Callback = function()
+    TP_World3()
+end
+}
