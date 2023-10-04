@@ -1,0 +1,8 @@
+local RAMAccount = loadstring(game:HttpGet'https://raw.githubusercontent.com/ic3w0lf22/Roblox-Account-Manager/master/RAMAccount.lua')()
+local MyAccount = RAMAccount.new(game:GetService'Players'.LocalPlayer.Name)
+
+local ram = false
+while true do
+MyAccount:SetAlias(tostring("Money :"..game.Players.LocalPlayer.DataFolder.Currency.Value))
+MyAccount:SetDescription(tostring("Wanted :"..game.Players.LocalPlayer.leaderstats.Wanted.Value))
+end
