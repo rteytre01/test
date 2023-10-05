@@ -1,1 +1,23 @@
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/discord%20lib.txt")()
 
+local win = DiscordLib:Window("discord library")
+
+local serv = win:Server("Preview", "")
+
+
+local tgls = serv:Channel("ใช้สมองนะไอกุ่ย")
+
+tgls:Toggle("Auto kick",false, function(bool)
+
+while true do
+    if game.Players.LocalPlayer.DataFolder.Currency.Value <= 10000 then
+    wait(1)
+    print("kick")
+    game.Players.LocalPlayer:Kick("if money 10K then kick")
+end
+end
+end)
+
+serv:Channel("by 6voht รุ่นใหญ่")
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
